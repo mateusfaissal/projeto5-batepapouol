@@ -1,0 +1,78 @@
+body {
+    box-sizing: border-box;
+    background-color: lightgrey;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 375px;
+    height: 80px;
+    padding: 10px;
+    left: 0px;
+    top: 0px;
+
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    width: 100px;
+    height: 88px;
+}
+
+.icon {
+    width: 62px;
+    height: 40px;
+}
+
+.chat {
+    width: 375px;
+    margin-top: 110px;
+    margin-bottom: 87px;
+}
+
+.mensagens {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 2px;
+    margin-bottom: 2px;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 375px;
+    height: 80px;
+    left: 0px;
+    bottom: 0px;
+
+    background-color: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05)
+}
+.footer input {
+    position: fixed;
+    width: 390px;
+    height: 80px;
+    left: 0px;
+    bottom: 0px;
+
+    background-color: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.footer input::placeholder {
+   font-size : 17px;
+   font-style: italic;
+}
+
+.icon2 {
+    width: 36px;
+    height: 36px;
+}
