@@ -12,44 +12,6 @@ const nomeUsuario = prompt('Digite seu nome!');
 
 axios.defaults.headers.common['Authorization'] = 'qeRpsB2zNVDv01ukC7PLgfMR';
 
-function buscarMensagens () {
-    const promessa = axios.get ('https://mock-api.driven.com.br/api/vm/uol/messages');
-    promessa.then(processarMensagens);
-    promessa.catch (erroAoBuscarMensagens);
-       
-}
-buscarMensagens();
-
-function processarMensagens (resposta) {
-    console.log(resposta);
-
-    mensagens = resposta.data;
-    console.log (mensagens);
-
-    renderizaMensagens();
-}
-
-//setInterval(processarMensagens, 3000);
-
-function erroAoBuscarMensagens(erro) {
-    console.log ('deu ruim')
-}
-
-
-
-function renderizaMensagens () {
-    const ulMensagens = document.querySelector('.chat');
-    ulMensagens.innerHTML = '';
-
-    for (let i = 0; i < mensagens.length; i++) {
-        let mensagem = mensagens [i];
-        
-        ulMensagens.innerHTML += `
-        <li data-test="message" class="mensagens">(${mensagem.time})  <strong>${mensagem.from}</strong>
-        para ${mensagem.to}:${mensagem.text}</li>
-        `
-    }
-}
 
 function perguntaNome() {
     const nome = {name:`${nomeUsuario}`};
@@ -70,9 +32,53 @@ function receberResposta(resposta) {
 function deuErro(erro) {
     if (erro.response.status != 200) {
         prompt('Digite outro nome');
+        window.location.reload();
     }
     console.log("deu algum problema");
     console.log (erro);
+}
+
+
+function buscarMensagens () {
+    const promessa = axios.get ('https://mock-api.driven.com.br/api/vm/uol/messages');
+    promessa.then(processarMensagens);
+    promessa.catch (erroAoBuscarMensagens);
+       
+}
+buscarMensagens();
+
+function processarMensagens (resposta) {
+    console.log(resposta);
+
+    mensagens = resposta.data;
+    console.log (mensagens);
+
+    renderizaMensagens();
+}
+
+setInterval(buscarMensagens, 3000);
+
+function erroAoBuscarMensagens(erro) {
+    console.log ('deu ruim')
+}
+
+
+
+function renderizaMensagens () {
+    const ulMensagens = document.querySelector('.chat');
+    ulMensagens.innerHTML = '';
+
+    for (let i = 0; i < mensagens.length; i++) {
+        let mensagem = mensagens [i];
+        
+        ulMensagens.innerHTML += `
+        <li data-test="message" class="mensagens"> 
+        <p class = "time"> (${mensagem.time}) </p>
+        <p class = "from"> ${mensagem.from} </p>
+        <p class = "to"> para ${mensagem.to}: </p>
+        <p class = "text"> ${mensagem.text}</li> </p>
+        `
+    }
 }
 
 function verificaConexao() {
@@ -121,5 +127,9 @@ function mensagemChegou (mostrar) {
 }
 
 function naoRecebeMensagem (nao) {
-    console.log('mensagem nao foi salva');
+    if (nao.error.code === "ERR_Network") {
+        alert('Mensagem não foi salva');
+        window.location.reload();
+    }
+    console.log(nao);
 }

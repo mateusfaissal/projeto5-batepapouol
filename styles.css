@@ -1,6 +1,7 @@
 body {
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
-    background-color: lightgrey;
+    background-color: lightgray;
     overflow-x: hidden;
 }
 .container {
@@ -79,4 +80,27 @@ body {
 .icon2 {
     width: 36px;
     height: 36px;
+}
+
+.time {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    text-align: left;
+    color: grey;
+}
+
+.from {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.to, .text {
+    font-size: 14px;
+}
+
+p {
+ padding-right: 5px;
 }
