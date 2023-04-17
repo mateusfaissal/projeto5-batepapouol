@@ -9,21 +9,24 @@
     <title>Bate-Papo UOL</title>
 </head>
 <body>
-    <div class="header">
-        <div> <img class="logo" src="./logo.jpg"> </div>
-        <div> <ion-icon class="icon" name="people-sharp"></ion-icon> </div>
+    <div class="container">
+        <div class="header">
+            <div> <img class="logo" src="./logo.jpg"> </div>
+            <div> <ion-icon class="icon" name="people-sharp"></ion-icon> </div>
+        </div>
+        <section>
+            <ul class="chat">
+                <li class="mensagens"></li>
+            </ul>     
+        </section>
+        <div class="footer"> 
+            <div> <input type="text" placeholder="Escreva aqui..."> </div>
+            <div> <ion-icon class="icon2" name="paper-plane-outline"></ion-icon> </div> 
+        </div>
     </div>
-    <section>
-        <ul class="chat">
-             <li class="mensagens"> Fai: Oi, tudo bem ? </li>
-        </ul>     
-    </section>
-    <div class="footer"> 
-        <div> <input type="text" placeholder="Escreva aqui..."> </div>
-        <div> <ion-icon class="icon2" name="paper-plane-outline"></ion-icon> </div> 
-    </div>
-  
-    <script src="./scripts.js"> </script>
+
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./scripts.js"> </script>
 </body>
 </html>
