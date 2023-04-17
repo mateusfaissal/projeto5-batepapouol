@@ -20,8 +20,10 @@
             </ul>     
         </section>
         <div class="footer"> 
-            <div> <input type="text" placeholder="Escreva aqui..."> </div>
-            <div> <ion-icon class="icon2" name="paper-plane-outline"></ion-icon> </div> 
+            <div> <input data-test="input-message" class="mensagem-digitada" type="text" placeholder="Escreva aqui..."> </div>
+            <div> <button data-test="send-message"  onclick="enviarMensagens()"><ion-icon class="icon2"
+                    name="paper-plane-outline"></ion-icon> </button> 
+            </div> 
         </div>
     </div>
 

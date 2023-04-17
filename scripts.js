@@ -1,6 +1,12 @@
 const nome = [];
 
-let mensagens = [];
+let mensagens = [{
+	from: "",
+	to: "",
+	text: "",
+    time: "",
+	type: ""
+}];
 
 const nomeUsuario = prompt('Digite seu nome!');
 
@@ -18,9 +24,12 @@ function processarMensagens (resposta) {
     console.log(resposta);
 
     mensagens = resposta.data;
+    console.log (mensagens);
 
     renderizaMensagens();
 }
+
+//setInterval(processarMensagens, 3000);
 
 function erroAoBuscarMensagens(erro) {
     console.log ('deu ruim')
@@ -36,7 +45,8 @@ function renderizaMensagens () {
         let mensagem = mensagens [i];
         
         ulMensagens.innerHTML += `
-        <li class="mensagens">${mensagem}</li>
+        <li data-test="message" class="mensagens">(${mensagem.time})  <strong>${mensagem.from}</strong>
+        para ${mensagem.to}:${mensagem.text}</li>
         `
     }
 }
@@ -78,3 +88,38 @@ function verificaConexao() {
 } 
 
 setInterval (verificaConexao, 5000);
+
+function enviarMensagens() {
+    const campoMensagem = document.querySelector('.mensagem-digitada');
+
+    const minhaMensagem = {
+        
+            from: `${nomeUsuario}`,
+            to: "Todos",
+            text: campoMensagem.value,
+            type: "message"
+        
+    }
+
+    
+    const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', minhaMensagem);
+    promessa.then(receberMensagem);
+    promessa.catch(naoRecebeMensagem);
+
+}
+
+function receberMensagem (res) {
+    console.log('mensagem foi salva');
+
+    const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
+    promessa.then(mensagemChegou);
+}
+
+function mensagemChegou (mostrar) {
+    mensagens = mostrar.data;
+    renderizaMensagens();
+}
+
+function naoRecebeMensagem (nao) {
+    console.log('mensagem nao foi salva');
+}
