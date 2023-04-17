@@ -15,7 +15,6 @@ axios.defaults.headers.common['Authorization'] = 'qeRpsB2zNVDv01ukC7PLgfMR';
 
 function perguntaNome() {
     const nome = {name:`${nomeUsuario}`};
-    console.log (nome);
 
     const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants',nome);
     promessa.then(receberResposta);
@@ -24,8 +23,8 @@ function perguntaNome() {
 perguntaNome();
 
 function receberResposta(resposta) {
-    console.log ("O nome foi cadastrado com sucesso!");
     console.log (resposta);
+    buscarMensagens();
 }
 
 
@@ -34,7 +33,6 @@ function deuErro(erro) {
         prompt('Digite outro nome');
         window.location.reload();
     }
-    console.log("deu algum problema");
     console.log (erro);
 }
 
@@ -45,21 +43,19 @@ function buscarMensagens () {
     promessa.catch (erroAoBuscarMensagens);
        
 }
-buscarMensagens();
+
 
 function processarMensagens (resposta) {
-    console.log(resposta);
 
     mensagens = resposta.data;
-    console.log (mensagens);
-
+    
     renderizaMensagens();
 }
 
 setInterval(buscarMensagens, 3000);
 
 function erroAoBuscarMensagens(erro) {
-    console.log ('deu ruim')
+    console.log (erro);
 }
 
 
@@ -115,8 +111,7 @@ function enviarMensagens() {
 }
 
 function receberMensagem (res) {
-    console.log('mensagem foi salva');
-
+   
     const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
     promessa.then(mensagemChegou);
 }
@@ -131,5 +126,4 @@ function naoRecebeMensagem (nao) {
         alert('Mensagem não foi salva');
         window.location.reload();
     }
-    console.log(nao);
 }
